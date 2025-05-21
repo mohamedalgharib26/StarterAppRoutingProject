@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import "./App.css";
+import HomePage from "./Pages/HomePage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<h1>App</h1>} />
+        <Route path="/" element={<HomePage />} />
       </Routes>
     </BrowserRouter>
   );

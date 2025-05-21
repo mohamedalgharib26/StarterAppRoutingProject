@@ -1,8 +1,28 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 function ProductDetails() {
   const { id } = useParams();
-  console.log(id);
+
+  const [product, setProduct] = useState({});
+
+  const fetchData = async () => {
+    // fetch("https://fakestoreapi.com/products")
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     setProducts(data);
+    //   });
+
+    const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+    const data = await response.json();
+    console.log(data);
+    setProduct(data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div>
       <section className="py-5">
@@ -11,23 +31,17 @@ function ProductDetails() {
             <div className="col-md-6">
               <img
                 className="card-img-top mb-5 mb-md-0"
-                src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg"
+                src={product.image}
                 alt="..."
               />
             </div>
             <div className="col-md-6">
               <div className="small mb-1">SKU: BST-498</div>
-              <h1 className="display-5 fw-bolder">Shop item template</h1>
+              <h1 className="display-5 fw-bolder">{product.title}</h1>
               <div className="fs-5 mb-5">
-                <span className="text-decoration-line-through">$45.00</span>
-                <span>$40.00</span>
+                <span>{`$ ${product.price}`}</span>
               </div>
-              <p className="lead">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Praesentium at dolorem quidem modi. Nam sequi consequatur
-                obcaecati excepturi alias magni, accusamus eius blanditiis
-                delectus ipsam minima ea iste laborum vero?
-              </p>
+              <p className="lead">{product.description}</p>
               <div className="d-flex">
                 <input
                   className="form-control text-center me-3"

@@ -1,11 +1,16 @@
+import { useContext } from "react";
+import { Link } from "react-router";
+import { cartContext } from "../Context/CartContext";
+
 function Navbar() {
+  const { cart } = useContext(cartContext);
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container px-4 px-lg-5">
-          <a className="navbar-brand" href="#!">
-            Start Bootstrap
-          </a>
+          <Link className="navbar-brand" to={"/"}>
+            Shopping Cart
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -20,56 +25,22 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#!">
+                <Link className="nav-link active" aria-current="page" to={"/"}>
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#!">
-                  About
-                </a>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  id="navbarDropdown"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Shop
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a className="dropdown-item" href="#!">
-                      All Products
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#!">
-                      Popular Items
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#!">
-                      New Arrivals
-                    </a>
-                  </li>
-                </ul>
+                <Link className="nav-link">About</Link>
               </li>
             </ul>
             <form className="d-flex">
-              <button className="btn btn-outline-dark" type="submit">
+              <Link to={"/cart"} className="btn btn-outline-dark" type="submit">
                 <i className="bi-cart-fill me-1"></i>
                 Cart
                 <span className="badge bg-dark text-white ms-1 rounded-pill">
-                  0
+                  {cart.length}
                 </span>
-              </button>
+              </Link>
             </form>
           </div>
         </div>

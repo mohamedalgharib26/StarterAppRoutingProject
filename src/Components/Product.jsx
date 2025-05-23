@@ -1,9 +1,10 @@
 import { Link } from "react-router";
+import AddToCartBtn from "./AddToCartBtn";
 
 function Product({ product: { title, price, image, id } }) {
+  const product = { title, price, image, id };
   return (
     <div>
-      {" "}
       <div className="col mb-5">
         <div className="card h-60">
           <div
@@ -42,9 +43,7 @@ function Product({ product: { title, price, image, id } }) {
 
           <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div className="text-center">
-              <a className="btn btn-outline-dark mt-auto" href="#">
-                Add to cart
-              </a>
+              <AddToCartBtn product={product} />
             </div>
           </div>
         </div>
